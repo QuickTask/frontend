@@ -5,6 +5,7 @@ import { Button, Card, Form } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { requestMatch } from "../../actions/matchActions";
 import emailjs from 'emailjs-com';
+import baseUrl from "../../BaseUrl";
 
 function Contact({ match, history }) {
     const [mentorName, setMentorName] = useState();
@@ -18,7 +19,7 @@ function Contact({ match, history }) {
 
     useEffect(() => {
         const fetching = async () => {
-            const { data } = await axios.get(`/api/notes/${match.params.id}`);
+            const { data } = await axios.get(`${baseUrl}/api/notes/${match.params.id}`);
             setMentorName(data.name);
             setMentorEmail(data.email);
             setMentorId(data.user);

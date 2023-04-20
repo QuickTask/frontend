@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteNoteAction, updateNoteAction } from "../../actions/notesActions";
 import ErrorMessage from "../../components/ErrorMessage";
 import Loading from "../../components/Loading";
+import baseUrl from "../../BaseUrl";
 
 function SingleNote({ match, history }) {
   const [headline, setHeadline] = useState("");
@@ -32,7 +33,7 @@ function SingleNote({ match, history }) {
 
   useEffect(() => {
     const fetching = async () => {
-      const { data } = await axios.get(`/api/notes/${match.params.id}`);
+      const { data } = await axios.get(`${baseUrl}/api/notes/${match.params.id}`);
 
       setHeadline(data.headline);
       setAboutYou(data.aboutYou);
